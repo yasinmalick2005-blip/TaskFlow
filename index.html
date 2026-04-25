@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Task Manager & Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="app-title">✓ TaskFlow</h1>
+            <p class="app-tagline">Manage tasks & calculate on the fly</p>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-label">Total Tasks</span>
+                <span class="stat-value" id="totalTasks">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Completed</span>
+                <span class="stat-value" id="completedTasks">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Remaining</span>
+                <span class="stat-value" id="remainingTasks">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Total Time</span>
+                <span class="stat-value" id="totalTime">0h</span>
+            </div>
+        </div>
+
+        <!-- Workload Warning -->
+        <div class="workload-warning" id="workloadWarning" style="display: none;">
+            ⚠️ Warning: Total estimated time exceeds 8 hours!
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Task Manager Section -->
+            <section class="section task-manager-section">
+                <h2 class="section-title">📋 Task Manager</h2>
+
+                <!-- Input Form -->
+                <div class="task-form">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="Enter task name..."
+                    >
+                    
+                    <div class="form-row">
+                        <select id="prioritySelect" class="form-select">
+                            <option value="high">🔴 High</option>
+                            <option value="medium" selected>🟡 Medium</option>
+                            <option value="low">🔵 Low</option>
+                        </select>
+
+                        <select id="categorySelect" class="form-select">
+                            <option value="work">💼 Work</option>
+                            <option value="study">📚 Study</option>
+                            <option value="personal">👤 Personal</option>
+                        </select>
+
+                        <input 
+                            type="number" 
+                            id="timeInput" 
+                            class="form-input" 
+                            placeholder="Time (min)" 
+                            min="0" 
+                            max="480"
+                        >
+                    </div>
+
+                    <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">0% completed</p>
+                </div>
+
+                <!-- Task List -->
+                <div class="task-list" id="taskList">
+                    <div class="empty-state">
+                        <p>📭 No tasks yet. Add one to get started!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section class="section calculator-section">
+                <h2 class="section-title">🧮 Mini Calculator</h2>
+
+                <!-- Display Screen -->
+                <div class="calculator-display" id="calcDisplay">0</div>
+
+                <!-- Number Pad -->
+                <div class="calculator-pad">
+                    <!-- Row 1 -->
+                    <button class="calc-btn calc-clear" id="calcClear">C</button>
+                    <button class="calc-btn calc-backspace" id="calcBackspace">←</button>
+                    <button class="calc-btn calc-operator" data-operator="/">÷</button>
+                    <button class="calc-btn calc-operator" data-operator="*">×</button>
+
+                    <!-- Row 2 -->
+                    <button class="calc-btn calc-number" data-number="7">7</button>
+                    <button class="calc-btn calc-number" data-number="8">8</button>
+                    <button class="calc-btn calc-number" data-number="9">9</button>
+                    <button class="calc-btn calc-operator" data-operator="-">−</button>
+
+                    <!-- Row 3 -->
+                    <button class="calc-btn calc-number" data-number="4">4</button>
+                    <button class="calc-btn calc-number" data-number="5">5</button>
+                    <button class="calc-btn calc-number" data-number="6">6</button>
+                    <button class="calc-btn calc-operator" data-operator="+">+</button>
+
+                    <!-- Row 4 -->
+                    <button class="calc-btn calc-number" data-number="1">1</button>
+                    <button class="calc-btn calc-number" data-number="2">2</button>
+                    <button class="calc-btn calc-number" data-number="3">3</button>
+                    <button class="calc-btn calc-equals" id="calcEquals">=</button>
+
+                    <!-- Row 5 -->
+                    <button class="calc-btn calc-number calc-zero" data-number="0">0</button>
+                    <button class="calc-btn calc-number" data-number=".">.</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="text.js"></script>
+</body>
+</html>
